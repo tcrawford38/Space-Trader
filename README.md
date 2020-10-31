@@ -1,2 +1,2 @@
 # Space-Trader
-CS 2200 Group Project
+CS 2340 Group Project
