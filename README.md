@@ -1,5 +1,4 @@
-# Space Trader
-CS 2340 Group Project
+# Space Trader Remix
 # About
 Java/Javafx Game based on the old game Space Trader. For more information about the original game, visit http://www.spronck.net/spacetrader/STFrames.html
 # How to run
