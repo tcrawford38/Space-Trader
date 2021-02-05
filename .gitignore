@@ -1,4 +1,12 @@
+target
+
+// Intelli
 *.iml
 .idea
 out
 *.class
+
+// Eclipse
+.settings
+.classpath
+.project
