@@ -132,7 +132,7 @@ public class BanditScene extends Scene {
             } else {
                 title.setText("You failed to beat the bandit, lost your credits and your ship took damage");
                 npcText.setText("Bandit: You're so weak. You'll pay for that.");
-                player.credits = 0;
+                player.credits = player.credits - player.credits/4;
                 player.getShip().takeDamage(3);
             }
             banditOptions.setVisible(false);

@@ -112,7 +112,7 @@ public class TraderScene extends Scene {
                         + "Received " + num + " items\n"
                         + "Traveling to destination.");
             } else {
-                int damage = rand.nextInt(5);
+                int damage = rand.nextInt(4) + 1;
                 player.getShip().takeDamage(damage);
                 travelToDestination("Failed to Rob Trader.\n"
                         + "Ship Lost " + damage + " HP\n"
