@@ -114,16 +114,16 @@ public class Global {
         // Load region names and class names into string array
         Text regionNameFile = Global.app.assetManager.get("data/RegionNames.txt", Text.class);
         Text classNameFile = Global.app.assetManager.get("data/RegionClassNames.txt", Text.class);
-        this.regionNames = regionNameFile.toString().trim().split("\r\n");
-        this.classNames = classNameFile.toString().trim().split("\r\n");
+        this.regionNames = regionNameFile.toString().trim().split("\r\n|\n|\r");
+        this.classNames = classNameFile.toString().trim().split("\r\n|\n|\r");
 
         // Load item descriptions into string array
         Text itemsFile = Global.app.assetManager.get("data/Items.txt", Text.class);
-        this.itemDescriptions = itemsFile.toString().trim().split("\r\n");
+        this.itemDescriptions = itemsFile.toString().trim().split("\r\n|\n|\r");
 
         // Load character upgrade descriptions into string array
         Text characterUpgradeFile = Global.app.assetManager.get("data/CharacterUpgrade.txt", Text.class);
-        this.characterUpgradeDescriptions = characterUpgradeFile.toString().trim().split("\r\n");
+        this.characterUpgradeDescriptions = characterUpgradeFile.toString().trim().split("\r\n|\n|\r");
 
         // Load and play the music
         Music music = assetManager.get("default_music.mp3", Music.class);
