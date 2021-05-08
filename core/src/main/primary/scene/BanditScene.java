@@ -84,7 +84,7 @@ public class BanditScene extends Scene {
 
     private Button payButton() {
         return textButton("Pay Bandit", Color.RED, () -> {
-            if (player.credits < 2000) {
+            if (player.credits < 1000) {
                 if (player.getShip().getTotalItems() == 0) {
                     title.setText("You couldn't pay the bandit and your ship took damage");
                     npcText.setText("Bandit: You don't have money or items? I'm damaging your ship.");
@@ -95,9 +95,9 @@ public class BanditScene extends Scene {
                     player.getShip().clearItems();
                 }
             } else {
-                title.setText("You paid the bandit 2000 credits");
+                title.setText("You paid the bandit 1000 credits");
                 npcText.setText("Bandit: Thank you for donating to the charity. Haha.");
-                player.credits -= 2000;
+                player.credits -= 1000;
             }
             banditOptions.setVisible(false);
             continueBtn.setVisible(true);
@@ -114,7 +114,7 @@ public class BanditScene extends Scene {
             } else {
                 title.setText("You failed to flee, lost your credits and your ship took damage");
                 npcText.setText("Bandit: Where do you think you're going? You'll pay for that.");
-                player.credits = 0;
+                player.credits = player.credits/4;
                 player.getShip().takeDamage(3);
             }
             banditOptions.setVisible(false);
@@ -132,7 +132,7 @@ public class BanditScene extends Scene {
             } else {
                 title.setText("You failed to beat the bandit, lost your credits and your ship took damage");
                 npcText.setText("Bandit: You're so weak. You'll pay for that.");
-                player.credits = 0;
+                player.credits = player.credits/4;
                 player.getShip().takeDamage(3);
             }
             banditOptions.setVisible(false);
