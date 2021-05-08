@@ -53,4 +53,10 @@ Dyson Sphere:Used to harvest energy from stars:10000:5
 Plasma TV:For some good Netflix and Chill:4:2999
 Sandals:They work better then Geox:400:1
 Escape pod:You might need it:3800:5
-Vaccines:They are very trendy nowdays:2500:4
+Vaccines:They are very trendy nowadays:2500:4
+Sunglasses:Staring at a star will still cause blindness:300:1
+Mason Jar:Cup but for hipsters:200:2
+Steel:Multipurpose metal:1000:2
+Maple Wood:Rare organic material from Earth:2000:1
+Kidney:Where's the other one?:3000:4
+Crocs:Certified space vacuum safe:400:3
