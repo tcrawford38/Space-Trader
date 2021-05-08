@@ -8,9 +8,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Timer;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import main.primary.Global;
-import main.primary.gameplay.Player;
-import main.primary.gameplay.Skill;
-import main.primary.gameplay.Trader;
+import main.primary.gameplay.*;
 
 import java.util.Random;
 
@@ -86,7 +84,10 @@ public class TraderScene extends Scene {
                 // only take as many as you can before the ship gets full
                 int bought = 0;
                 while (bought < trader.getItemCount()) {
-                    player.getShip().addItem(trader.getItem());
+                    Item boughtItem = trader.getItem();
+                    int itemFinalPrice = (int) (trader.getPricePerItem());
+                    boughtItem.setFinalSellPrice((int) (itemFinalPrice * 0.9));
+                    player.getShip().addItem(boughtItem);
                     player.credits -= trader.getPricePerItem();
                     bought++;
                 }
