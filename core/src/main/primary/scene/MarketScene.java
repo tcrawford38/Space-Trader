@@ -76,7 +76,10 @@ public class MarketScene extends Scene {
 
         double discountPercentage = Market.DISCOUNT_MERCHANT_LEVEL * Global.app.player.getSkillLevel(Skill.SkillType.MERCHANT);
         int itemFinalPrice = (int) (item.getAdjustedPrice() * (1.00 - 0.01 * discountPercentage));
-        item.setFinalSellPrice((int) (itemFinalPrice * Market.MARKET_DEPRECIATION));
+
+        // Adding randomness for selling price
+        int randomness = (int) ((Math.random() * (itemFinalPrice / 16)));
+        item.setFinalSellPrice((int) (itemFinalPrice * Market.MARKET_DEPRECIATION - randomness));
 
         boolean canAfford = player.credits >= itemFinalPrice;
         Button buyBtn = textButton("Buy for " + itemFinalPrice + " (-" + discountPercentage + "%)", canAfford ? Color.GREEN : Color.RED, () -> {

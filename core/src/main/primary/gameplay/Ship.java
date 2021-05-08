@@ -73,8 +73,18 @@ public class Ship {
         return items.size();
     }
 
+    public List<Item> getItems() {
+        return items;
+    }
+
     public Item getItem(int index) {
         return items.get(index);
+    }
+
+    public void ageItems() {
+        for (int i = 0; i < items.size(); i++) {
+            items.get(i).setAge(items.get(i).getAge() + 1);
+        }
     }
 
     public void addItem(Item item) {
