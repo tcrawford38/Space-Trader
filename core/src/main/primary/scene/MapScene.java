@@ -236,7 +236,9 @@ public class MapScene extends Scene {
                             for(Item i : ship.getItems()) {
                                 System.out.println(i.getName() + " " + i.getAge());
                                 int randomness = (int) ((Math.random() * (i.getAdjustedPrice() / 16 + i.getAdjustedPrice() / 16)) - i.getAdjustedPrice() / 16);
-                                int ageDepreciation = (int) (i.getAge() * (i.getAdjustedSellingPrice() / 50));
+                                int ageDepreciation = (int) (i.getAge() * (i.getAdjustedSellingPrice() / 30));
+                                System.out.println(ageDepreciation);
+                                System.out.println(randomness);
                                 i.setFinalSellPrice(i.getAdjustedPrice() - ageDepreciation + randomness);
                             }
 
