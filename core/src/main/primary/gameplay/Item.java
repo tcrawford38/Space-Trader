@@ -79,6 +79,9 @@ public class Item {
     }
 
     public void setAge(int age) {
+        if (age >= 5) {
+            return;
+        }
         this.age = age;
     }
 }

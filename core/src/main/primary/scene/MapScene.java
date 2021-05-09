@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.Align;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import main.primary.Global;
+import main.primary.gameplay.Item;
 import main.primary.gameplay.Region;
 import main.primary.gameplay.Ship;
 import main.primary.gameplay.Skill;
@@ -214,6 +215,7 @@ public class MapScene extends Scene {
                         mapScene.sceneLoader.setScene(new MarketScene(region.getRegionMarket()));
                     } else {
                         Ship ship = Global.app.player.getShip();
+
                         if (fuelCost <= ship.fuel) {
                             switch (Global.app.pickRandomEvent()) {
                                 case TRADER:
@@ -226,6 +228,20 @@ public class MapScene extends Scene {
                                 case MARKET:
                             }
                             ship.fuel -= fuelCost;
+
+                            // ages all items in ship inventory
+                            ship.ageItems();
+
+                            // update new selling prices
+                            for(Item i : ship.getItems()) {
+                                System.out.println(i.getName() + " " + i.getAge());
+                                int randomness = (int) ((Math.random() * (i.getAdjustedPrice() / 16 + i.getAdjustedPrice() / 16)) - i.getAdjustedPrice() / 16);
+                                int ageDepreciation = (int) (i.getAge() * (i.getAdjustedSellingPrice() / 30));
+                                System.out.println(ageDepreciation);
+                                System.out.println(randomness);
+                                i.setFinalSellPrice(i.getAdjustedPrice() - ageDepreciation + randomness);
+                            }
+
                             Global.app.map.setCurrentLocation(region);
                             region.setHasVisited(true);
                             mapScene.updateUI();
