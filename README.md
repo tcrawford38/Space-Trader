@@ -12,4 +12,4 @@ desktop.
 Additional note: You might need to append `--illegal-access=permit` as a jvm flag (VM option in IntelliJ). 
 The libgdx engine uses a lot of internal reflection which is disabled by default in versions past java 8.
 
-Please email ckhiddeewu@gatech.edu if you have any questions about setup.
+Please email tcrawford38@gatech.edu if you have any questions about setup.
