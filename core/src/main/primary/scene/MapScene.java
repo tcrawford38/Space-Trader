@@ -27,6 +27,7 @@ public class MapScene extends Scene {
 
     private List<RegionUI> regionUIList;
     private Label statsBarLabel;
+    private static Table shipTable;
 
     public void create() {
         // Set map background
@@ -48,7 +49,25 @@ public class MapScene extends Scene {
 
         this.statsBarLabel = label(Global.app.player.generateStatsBar(), Color.YELLOW, 0.6f);
         table.add(statsBarLabel);
-        table.row();
+
+        //Create table for ship text button
+        this.shipTable = new Table();
+        resize((int) table.getWidth(), (int) table.getHeight());
+        shipTable.setOrigin(Align.center);
+        shipTable.add(textButton("View Ship", Color.RED, () -> {
+            shipTable.remove();
+            sceneLoader.setScene(new ShipScene());
+        }));
+        shipTable.bottom().pad(30);
+        sceneLoader.addActor(shipTable);
+    }
+
+    protected void resize(int width, int height) {
+        super.resize(width, height);
+        if (shipTable != null) {
+            shipTable.setPosition(sceneLoader.xOffset, sceneLoader.yOffset);
+            shipTable.setSize(table.getWidth(), table.getHeight());
+        }
     }
 
 
@@ -211,6 +230,7 @@ public class MapScene extends Scene {
             interactBtn.getListeners().clear();
             interactBtn.addListener(new ClickListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                    shipTable.remove();
                     if (isCurrentRegion) {
                         mapScene.sceneLoader.setScene(new MarketScene(region.getRegionMarket()));
                     } else {

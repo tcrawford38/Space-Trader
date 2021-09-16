@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Ship {
 
-    private final String name;
+    private String name;
 
     private int maxHp;
     private int attack;
@@ -39,6 +39,10 @@ public class Ship {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getMaxHP() {
