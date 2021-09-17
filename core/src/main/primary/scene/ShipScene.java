@@ -19,25 +19,46 @@ public class ShipScene extends Scene {
         // Set map background
         sceneLoader.setBackground("images/map_background.jpg");
 
-        table.defaults().pad(55f);
+        table.defaults().pad(40f);
 
         this.player = Global.app.player;
         Ship ship = player.getShip();
 
 
-        // Ship name
+        // Titles
         table.align(Align.top);
         table.add(title("Ship Name: " + ship.getName(), Color.YELLOW)).pad(20);
         table.add(textButton("Change Name", Color.RED, () -> {
             sceneLoader.setScene(new ChangeShipNameScene());
         }).padLeft(200));
         table.row();
-        table.add(title("Inventory", Color.YELLOW)).colspan(2);
+        table.add(title("Ship Details", Color.YELLOW)).colspan(2);
+        table.row();
+
+        // Fuel and HP
+        Color fuelColor;
+        if (ship.fuel >= ship.getFuelCapacity() / 2) {
+            fuelColor = Color.GREEN;
+        } else {
+            fuelColor = Color.RED;
+        }
+        table.add(label("Fuel: " + ship.fuel, fuelColor, SECTION_SCALE));
+        Color HPColor;
+        if (ship.getHP() >= ship.getMaxHP() / 2) {
+            HPColor = Color.GREEN;
+        } else {
+            HPColor = Color.RED;
+        }
+        table.add(label("HP: " + ship.getHP(), HPColor, SECTION_SCALE));
+
+        //Inventory
         table.row();
         table.add(shipCargo()).colspan(2);
         table.row();
         table.add(upgradeSlots()).colspan(2);
         table.row();
+
+        //Back and Upgrade Buttons
         table.add(textButton("Back", Color.RED, () -> {
             sceneLoader.setScene(new MapScene());
         })).align(Align.left);

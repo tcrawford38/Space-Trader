@@ -230,18 +230,19 @@ public class MapScene extends Scene {
             interactBtn.getListeners().clear();
             interactBtn.addListener(new ClickListener() {
                 public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                    shipTable.remove();
                     if (isCurrentRegion) {
+                        shipTable.remove();
                         mapScene.sceneLoader.setScene(new MarketScene(region.getRegionMarket()));
                     } else {
                         Ship ship = Global.app.player.getShip();
-
                         if (fuelCost <= ship.fuel) {
                             switch (Global.app.pickRandomEvent()) {
                                 case TRADER:
+                                    shipTable.remove();
                                     mapScene.sceneLoader.setScene(new TraderScene());
                                     break;
                                 case BANDIT:
+                                    shipTable.remove();
                                     mapScene.sceneLoader.setScene(new BanditScene());
                                     break;
                                 case SP_ENCOUNTER:
