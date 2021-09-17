@@ -19,13 +19,24 @@ public class SkillsLevelSelectionScene extends Scene {
         }
         table.row().pad(50);
 
-        // Display total remianing skill points
+        // Display total remaining skill points
         this.skillPointsLabel = label("Skill points: " + Global.app.player.getSkillPoints(), Color.YELLOW, 0.7f);
         table.add(skillPointsLabel).colspan(4);
+        table.row().pad(0, 50, 50, 50);
+
+        // Spot for error message if user finishes without using skill points
+        Label errorMessage = label("", Color.YELLOW, 1.1f);
+        table.add(errorMessage).colspan(4);
         table.row();
 
-        // Button to go to characterSheetScene
-        table.add(textButton("Finish", Color.RED, () -> sceneLoader.setScene(new CharacterSheetScene()))).colspan(4);
+        // Button to go to characterSheetScene (if all skill points used)
+        table.add(textButton("Finish", Color.RED, () -> {
+            if (Global.app.player.getSkillPoints() > 0) {
+                errorMessage.setText("Use all your skill points to continue!");
+            } else {
+                sceneLoader.setScene(new CharacterSheetScene());
+            }
+        })).colspan(4);
         table.row().pad(50);
 
         //Button to go back to nameSelectionScene
