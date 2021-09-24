@@ -8,6 +8,8 @@ import com.badlogic.gdx.utils.Align;
 import main.primary.Global;
 import main.primary.gameplay.*;
 
+import java.util.Objects;
+
 public class MarketScene extends Scene {
 
     private static final float SECTION_SCALE = 1.2f;
@@ -83,11 +85,14 @@ public class MarketScene extends Scene {
 
         boolean canAfford = player.credits >= itemFinalPrice;
         Button buyBtn = textButton("Buy for " + itemFinalPrice + " (-" + discountPercentage + "%)", canAfford ? Color.GREEN : Color.RED, () -> {
-            if (player.credits >= itemFinalPrice
-                    && player.getShip().getCargo() > player.getShip().getTotalItems()) {
+            if (canAfford && player.getShip().getCargo() > player.getShip().getTotalItems()) {
                 player.getShip().addItem(item);
                 player.credits -= itemFinalPrice;
-                sceneLoader.setScene(new MarketScene(regionMarket));
+                if(!Objects.equals(item.getName(), "Dyson Sphere")) {
+                    sceneLoader.setScene(new MarketScene(regionMarket));
+                } else {
+                    sceneLoader.setScene(new WinScene());
+                }
             }
         });
         buyBtn.setTransform(true);

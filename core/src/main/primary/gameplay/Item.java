@@ -28,6 +28,7 @@ public class Item {
         String[] itemProps = itemDesc.split(":");
 
         name = itemProps[0];
+        //name = "Dyson Sphere";
         description = itemProps[1];
         price = Integer.parseInt(itemProps[2]);
         techLevel = Integer.parseInt(itemProps[3]);
