@@ -42,7 +42,7 @@ public class ShipScene extends Scene {
         } else {
             fuelColor = Color.RED;
         }
-        table.add(label("Fuel: " + ship.fuel, fuelColor, SECTION_SCALE));
+        table.add(label("Fuel: " + ship.fuel + "/" + ship.getFuelCapacity(), fuelColor, SECTION_SCALE));
         Color HPColor;
         if (ship.getHP() >= ship.getMaxHP() / 2) {
             HPColor = Color.GREEN;
@@ -63,7 +63,7 @@ public class ShipScene extends Scene {
             sceneLoader.setScene(new MapScene());
         })).align(Align.left);
         table.add(textButton("Upgrade Ship", Color.RED, () -> {
-            sceneLoader.setScene(new MapScene());
+            sceneLoader.setScene(new UpgradeShipScene());
         }).padLeft(200));
 
     }

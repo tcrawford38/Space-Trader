@@ -127,4 +127,20 @@ public class Ship {
         upgrades.remove(upgrade);
     }
 
+    public void increaseMaxHP() {
+        maxHp = maxHp + 10;
+    }
+
+    public void increaseFuelCapacity() {
+        fuelCapacity = fuelCapacity + 500;
+    }
+
+    public void increaseCargoSpace() {
+        cargo = cargo + 1;
+    }
+
+    public void increaseUpgradeSlots() {
+        upgradeSlots = upgradeSlots + 1;
+    }
+
 }
