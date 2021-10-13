@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Ship {
 
-    private final String name;
+    private String name;
 
     private int maxHp;
     private int attack;
@@ -39,6 +39,10 @@ public class Ship {
 
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getMaxHP() {
@@ -121,6 +125,22 @@ public class Ship {
 
     public void removeUpgrade(CharacterUpgrade upgrade) {
         upgrades.remove(upgrade);
+    }
+
+    public void increaseMaxHP() {
+        maxHp = maxHp + 10;
+    }
+
+    public void increaseFuelCapacity() {
+        fuelCapacity = fuelCapacity + 500;
+    }
+
+    public void increaseCargoSpace() {
+        cargo = cargo + 1;
+    }
+
+    public void increaseUpgradeSlots() {
+        upgradeSlots = upgradeSlots + 1;
     }
 
 }
