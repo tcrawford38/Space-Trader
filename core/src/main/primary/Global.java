@@ -40,11 +40,11 @@ public class Global {
     public final ShapeRenderer shapeRenderer;
 
     public static final int[][] EVENT_PROBABILITIES = new int[][]{
-            {0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3}, //ez
-            {0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3}, // med
-            {0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3}}; // hard
+            {0, 0, 0, 1, 2, 3, 3, 3, 3, 3, 3, 4, 4, 4}, //ez
+            {0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 4}, // med
+            {0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4}}; // hard
 
-    public enum EventType {TRADER, BANDIT, SP_ENCOUNTER, MARKET}
+    public enum EventType {TRADER, BANDIT, SP_ENCOUNTER, MARKET, BENEFACTOR}
 
     public EventType pickRandomEvent() {
         switch (EVENT_PROBABILITIES[difficulty.ordinal()][rand.nextInt(11)]) {
@@ -56,6 +56,8 @@ public class Global {
                 return EventType.SP_ENCOUNTER;
             case 3:
                 return EventType.MARKET;
+            case 4:
+                return EventType.BENEFACTOR;
             default:
                 throw new ImpossibleError("Event probabilities will always be 0 - 3 inclusive");
         }

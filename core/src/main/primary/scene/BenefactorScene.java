@@ -11,6 +11,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import main.primary.Global;
 import main.primary.gameplay.*;
 
+import java.util.Random;
+
 public class BenefactorScene extends Scene {
 
     private static final float SECTION_SCALE = 1.2f;
@@ -18,6 +20,8 @@ public class BenefactorScene extends Scene {
     private static final float ITEM_DESC_SCALE = 0.5f;
     private static final float ITEM_SIDE_PADDING = 10;
     private Label title;
+    private Random rand;
+    private Player player;
 
     public void create() {
         // Set menu background
@@ -30,9 +34,14 @@ public class BenefactorScene extends Scene {
         table.row();
 
         // Benefactor dialogue
-        table.add(label("Kind Person: Hello Traveler. Here is 150 credits for the road", Color.WHITE, 1.2f));
+        player = Global.app.player;
+        rand = new Random();
+        int randCredits = rand.nextInt(500) + 500;
+        player.credits += randCredits;
+
+        table.add(label("Kind Person: Hello Traveler. Here is " + randCredits + " credits for the road", Color.WHITE, 1.2f));
         table.row();
         // Go to Welcome Screen
-        table.add(textButton("Continue", Color.YELLOW, () -> sceneLoader.setScene(new MapScene()))).pad(10);
+        table.add(textButton("Continue", Color.YELLOW, () -> sceneLoader.setScene(new MapScene()))).padBottom(150);
     }
 }

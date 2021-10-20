@@ -247,6 +247,9 @@ public class MapScene extends Scene {
                                     break;
                                 case SP_ENCOUNTER:
                                 case MARKET:
+                                case BENEFACTOR:
+                                    shipTable.remove();
+                                    mapScene.sceneLoader.setScene(new BenefactorScene());
                             }
                             ship.fuel -= fuelCost;
 
