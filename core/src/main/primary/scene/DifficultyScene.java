@@ -9,7 +9,7 @@ public class DifficultyScene extends Scene {
         table.defaults().pad(70f);
 
         // Title
-        table.add(title("Choose a difficult", Color.YELLOW)).colspan(3);
+        table.add(title("Choose a difficulty", Color.YELLOW)).colspan(3);
         table.padBottom(150f);
         table.row();
 

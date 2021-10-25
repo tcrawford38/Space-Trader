@@ -44,7 +44,7 @@ public class Global {
             {0, 0, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4, 4}, // med
             {0, 1, 1, 1, 2, 2, 3, 3, 3, 3, 3, 4}}; // hard
 
-    public enum EventType {TRADER, BANDIT, SP_ENCOUNTER, MARKET, BENEFACTOR}
+    public enum EventType {TRADER, BANDIT, SPACEPOLICE, MARKET, BENEFACTOR}
 
     public EventType pickRandomEvent() {
         switch (EVENT_PROBABILITIES[difficulty.ordinal()][rand.nextInt(11)]) {
@@ -53,13 +53,13 @@ public class Global {
             case 1:
                 return EventType.BANDIT;
             case 2:
-                return EventType.SP_ENCOUNTER;
+                return EventType.SPACEPOLICE;
             case 3:
                 return EventType.MARKET;
             case 4:
                 return EventType.BENEFACTOR;
             default:
-                throw new ImpossibleError("Event probabilities will always be 0 - 3 inclusive");
+                throw new ImpossibleError("Event probabilities will always be 0 - 4 inclusive");
         }
     }
 
@@ -101,6 +101,7 @@ public class Global {
         assetManager.load("images/unknown_location.png", Texture.class);
         assetManager.load("images/visited_location.png", Texture.class);
         assetManager.load("images/bandit.png", Texture.class);
+        assetManager.load("images/police.png", Texture.class);
         assetManager.load("images/MarketPlace_Icon.png", Texture.class);
         assetManager.load("images/Map_Icon.png", Texture.class);
 
