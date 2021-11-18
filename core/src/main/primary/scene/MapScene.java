@@ -245,8 +245,16 @@ public class MapScene extends Scene {
                                     shipTable.remove();
                                     mapScene.sceneLoader.setScene(new BanditScene());
                                     break;
-                                case SP_ENCOUNTER:
+                                case SPACEPOLICE:
+                                    shipTable.remove();
+                                    mapScene.sceneLoader.setScene(new SpacePoliceScene());
+                                    break;
                                 case MARKET:
+                                    break;
+                                case BENEFACTOR:
+                                    shipTable.remove();
+                                    mapScene.sceneLoader.setScene(new BenefactorScene());
+                                    break;
                             }
                             ship.fuel -= fuelCost;
 
