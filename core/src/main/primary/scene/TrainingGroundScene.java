@@ -36,46 +36,46 @@ public class TrainingGroundScene extends Scene {
         // Train Pilot skill
         table.add(label("Train Pilot skill: ", Color.WHITE, SECTION_SCALE)).align(Align.left);
         table.add(label(player.getSkillLevel(Skill.SkillType.PILOT) + " >> " + (player.getSkillLevel(Skill.SkillType.PILOT) + 1), Color.GREEN, SECTION_SCALE)).align(Align.left);
-        table.add(textButton("Buy for 2500", Color.RED, () -> {
-            ship.increaseMaxHP();
-            player.credits = player.credits - 1000;
-            sceneLoader.setScene(new UpgradeShipScene());
+        table.add(textButton("Buy for 2500", Color.GREEN, () -> {
+            player.changeSkillLevel(Skill.SkillType.PILOT, player.getSkillLevel(Skill.SkillType.PILOT) + 1);;
+            player.credits = player.credits - 2500;
+            sceneLoader.setScene(new TrainingGroundScene());
         })).align(Align.right);
         table.row();
 
         // Train Fighter skill
         table.add(label("Train Fighter skill: ", Color.WHITE, SECTION_SCALE)).align(Align.left);
         table.add(label(player.getSkillLevel(Skill.SkillType.FIGHTER) + " >> " + (player.getSkillLevel(Skill.SkillType.FIGHTER) + 1), Color.GREEN, SECTION_SCALE)).align(Align.left);
-        table.add(textButton("Buy for 2500", Color.RED, () -> {
-            ship.increaseFuelCapacity();
-            player.credits = player.credits - 1000;
-            sceneLoader.setScene(new UpgradeShipScene());
+        table.add(textButton("Buy for 2500", Color.GREEN, () -> {
+            player.changeSkillLevel(Skill.SkillType.FIGHTER, player.getSkillLevel(Skill.SkillType.PILOT) + 1);;
+            player.credits = player.credits - 2500;
+            sceneLoader.setScene(new TrainingGroundScene());
         })).align(Align.right);
         table.row();
 
         // Train Merchant skill
         table.add(label("Train Merchant skill: ", Color.WHITE, SECTION_SCALE)).align(Align.left);
         table.add(label(player.getSkillLevel(Skill.SkillType.MERCHANT) + " >> " + (player.getSkillLevel(Skill.SkillType.MERCHANT) + 1), Color.GREEN, SECTION_SCALE)).align(Align.left);
-        table.add(textButton("Buy for 2500", Color.RED, () -> {
-            ship.increaseFuelCapacity();
-            player.credits = player.credits - 1000;
-            sceneLoader.setScene(new UpgradeShipScene());
+        table.add(textButton("Buy for 2500", Color.GREEN, () -> {
+            player.changeSkillLevel(Skill.SkillType.MERCHANT, player.getSkillLevel(Skill.SkillType.PILOT) + 1);;
+            player.credits = player.credits - 2500;
+            sceneLoader.setScene(new TrainingGroundScene());
         })).align(Align.right);
         table.row();
 
         // Train Engineer skill
         table.add(label("Train Engineer skill: ", Color.WHITE, SECTION_SCALE)).align(Align.left);
         table.add(label(player.getSkillLevel(Skill.SkillType.ENGINEER) + " >> " + (player.getSkillLevel(Skill.SkillType.ENGINEER) + 1), Color.GREEN, SECTION_SCALE)).align(Align.left);
-        table.add(textButton("Buy for 2500", Color.RED, () -> {
-            ship.increaseFuelCapacity();
-            player.credits = player.credits - 1000;
-            sceneLoader.setScene(new UpgradeShipScene());
+        table.add(textButton("Buy for 2500", Color.GREEN, () -> {
+            player.changeSkillLevel(Skill.SkillType.ENGINEER, player.getSkillLevel(Skill.SkillType.PILOT) + 1);;
+            player.credits = player.credits - 2500;
+            sceneLoader.setScene(new TrainingGroundScene());
         })).align(Align.right);
         table.row();
 
         //Back Button
         table.add(textButton("Back", Color.RED, () -> {
-            sceneLoader.setScene(new ShipScene());
+            sceneLoader.setScene(new MapScene());
         })).colspan(3).align(Align.center);
     }
 
