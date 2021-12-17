@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\core",
+    "\\core\\src",
+    "\\core\\src\\main",
+    "\\core\\src\\main\\primary",
+    "\\core\\src\\main\\primary\\gameplay",
+    "\\core\\src\\main\\primary\\scene"
+  ],
+  "SelectedNode": "\\gradlew.bat",
+  "PreviewInSolutionExplorer": false
+}
