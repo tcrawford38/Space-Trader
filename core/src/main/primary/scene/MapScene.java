@@ -53,10 +53,14 @@ public class MapScene extends Scene {
         //Create table for ship text button
         this.shipTable = new Table();
         resize((int) table.getWidth(), (int) table.getHeight());
-        shipTable.setOrigin(Align.center);
+
         shipTable.add(textButton("View Ship", Color.RED, () -> {
             shipTable.remove();
             sceneLoader.setScene(new ShipScene());
+        })).padRight(200);
+        shipTable.add(textButton("Training Ground", Color.RED, () -> {
+            shipTable.remove();
+            sceneLoader.setScene(new TrainingGroundScene());
         }));
         shipTable.bottom().pad(30);
         sceneLoader.addActor(shipTable);
