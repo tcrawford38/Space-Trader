@@ -77,7 +77,7 @@ public class Market {
 
     private void calculateAdjustedSellingPrice(Item item, int regionTech) {
         item.setAdjustedSellingPrice((int) (item.getPrice()
-                - (regionTech - item.getTechLevel())
+                - (5 * regionTech - item.getTechLevel())
                 * TECH_LEVEL_DISCOUNT_FACTOR * item.getPrice()
                 + item.getPrice() * rand.nextDouble() / 5
                 - (Math.log10(item.getAge()) < 1 ? Math.log10(item.getAge()) : 1) * item.getPrice() * 0.5));
