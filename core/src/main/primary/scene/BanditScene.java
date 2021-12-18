@@ -52,7 +52,11 @@ public class BanditScene extends Scene {
         table.row();
 
         this.continueBtn = textButton("Continue", Color.RED, () -> {
-            sceneLoader.setScene(new MapScene());
+            if (player.credits <= 0 || player.getShip().getHP() <= 0) {
+                sceneLoader.setScene(new LoseScene());
+            } else {
+                sceneLoader.setScene(new MapScene());
+            }
         });
         continueBtn.setVisible(false);
         table.add(continueBtn);
@@ -88,7 +92,7 @@ public class BanditScene extends Scene {
                 if (player.getShip().getTotalItems() == 0) {
                     title.setText("You couldn't pay the bandit and your ship took damage");
                     npcText.setText("Bandit: You don't have money or items? I'm damaging your ship.");
-                    player.getShip().takeDamage(3);
+                    player.getShip().takeDamage(10);
                 } else {
                     title.setText("You couldn't pay the bandit and lost your items");
                     npcText.setText("Bandit: That's not enough money. I'm taking your items");
@@ -114,8 +118,8 @@ public class BanditScene extends Scene {
             } else {
                 title.setText("You failed to flee, lost your credits and your ship took damage");
                 npcText.setText("Bandit: Where do you think you're going? You'll pay for that.");
-                player.credits = player.credits/4;
-                player.getShip().takeDamage(3);
+                player.credits -= 200;
+                player.getShip().takeDamage(10);
             }
             banditOptions.setVisible(false);
             continueBtn.setVisible(true);
@@ -132,8 +136,8 @@ public class BanditScene extends Scene {
             } else {
                 title.setText("You failed to beat the bandit, lost your credits and your ship took damage");
                 npcText.setText("Bandit: You're so weak. You'll pay for that.");
-                player.credits = player.credits/4;
-                player.getShip().takeDamage(3);
+                player.credits -= 200;
+                player.getShip().takeDamage(10);
             }
             banditOptions.setVisible(false);
             continueBtn.setVisible(true);
