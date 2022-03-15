@@ -23,6 +23,7 @@ public class CharacterUpgrade {
     private int techLevel;
     private int sellingPrice;
     private boolean equipped;
+    private boolean statUpgrade;
 
     private static final int[][] probabilities = new int[][]{
             {1, 1, 1, 1, 1, 1, 1, 1, 2, 2}, //0
@@ -57,6 +58,7 @@ public class CharacterUpgrade {
         this.techLevel = Integer.parseInt(upgradeProps[4]);
         int[] probability = probabilities[techLevel - 1];
 
+        statUpgrade = false;
         this.incAmount = probability[rand.nextInt(10)];
         this.name = adjectives[incAmount - 1] + upgradeProps[0];
         this.description = upgradeProps[1];
@@ -69,6 +71,18 @@ public class CharacterUpgrade {
             throw new IllegalStateException("Unexpected value: " + skillType);
         }
         skillType = SkillType.values()[skillTypeIndex];
+    }
+
+    public CharacterUpgrade(boolean statUpgrade) {
+        this.statUpgrade = statUpgrade;
+
+        this.name = "Shields";
+        this.description = "Reinforce your ship";
+        this.price = 800;
+        this.incAmount = 10;
+        this.techLevel = 1;
+        this.sellingPrice = 0;
+        this.equipped = false;
     }
 
     public String getName() {
@@ -117,5 +131,9 @@ public class CharacterUpgrade {
 
     public void setEquipped(boolean equipped) {
         this.equipped = equipped;
+    }
+
+    public boolean isStatUpgrade() {
+        return statUpgrade;
     }
 }

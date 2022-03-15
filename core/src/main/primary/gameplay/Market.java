@@ -56,11 +56,16 @@ public class Market {
             calculateAdjustedSellingPrice(itemsOffering.get(i), currentRegion.getTechLevel());
         }
 
+        int r = (int) (Math.random() * 101);
         boolean isNotValidUpgrade = true;
         CharacterUpgrade tempUpgrade = null;
-        while (isNotValidUpgrade) {
-            tempUpgrade = new CharacterUpgrade();
-            isNotValidUpgrade = tempUpgrade.getTechLevel() > currentRegion.getTechLevel();
+        if (r < 70) {
+            while (isNotValidUpgrade) {
+                tempUpgrade = new CharacterUpgrade();
+                isNotValidUpgrade = tempUpgrade.getTechLevel() > currentRegion.getTechLevel();
+            }
+        } else {
+            tempUpgrade = new CharacterUpgrade(true);
         }
         specialItem = tempUpgrade;
     }

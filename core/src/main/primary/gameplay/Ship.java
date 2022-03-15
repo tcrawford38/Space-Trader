@@ -131,6 +131,10 @@ public class Ship {
         maxHp = maxHp + 10;
     }
 
+    public void decreaseMaxHP() {
+        maxHp = maxHp - 10;
+    }
+
     public void increaseFuelCapacity() {
         fuelCapacity = fuelCapacity + 500;
     }

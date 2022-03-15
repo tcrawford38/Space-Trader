@@ -116,14 +116,25 @@ public class MarketScene extends Scene {
 
         specialItemTable.add(label(specialItem.getName(), Color.WHITE, ITEM_NAME_SCALE));
         specialItemTable.row();
-        specialItemTable.add(label(specialItem.getDescription()
-                        + " (Tech: " + specialItem.getTechLevel() + " | " + Skill.typeToStr(specialItem.getSkillType())
-                        + " +" + specialItem.getIncAmount() + ")",
-                Color.WHITE, ITEM_DESC_SCALE));
+        if (specialItem.isStatUpgrade()) {
+            specialItemTable.add(label(specialItem.getDescription() + " (MaxHP + 10)",
+                    Color.WHITE, ITEM_DESC_SCALE));
+        } else {
+            specialItemTable.add(label(specialItem.getDescription()
+                            + " (Tech: " + specialItem.getTechLevel() + " | " + Skill.typeToStr(specialItem.getSkillType())
+                            + " +" + specialItem.getIncAmount() + ")",
+                    Color.WHITE, ITEM_DESC_SCALE));
+        }
         specialItemTable.row();
 
-        double discountPercentage = Market.DISCOUNT_MERCHANT_LEVEL * Global.app.player.getSkillLevel(Skill.SkillType.MERCHANT);
-        int specialItemFinalPrice = (int) (specialItem.getPrice() * (1.00 - 0.01 * discountPercentage));
+        double discountPercentage;
+        int specialItemFinalPrice;
+        if (specialItem.isStatUpgrade()) {
+            discountPercentage = 0;
+        } else {
+            discountPercentage = Market.DISCOUNT_MERCHANT_LEVEL * Global.app.player.getSkillLevel(Skill.SkillType.MERCHANT);
+        }
+        specialItemFinalPrice = (int) (specialItem.getPrice() * (1.00 - 0.01 * discountPercentage));
         specialItem.setAdjustedPrice(specialItemFinalPrice);
         specialItem.setSellingPrice((int) (specialItemFinalPrice * CharacterUpgrade.DEPRECIATION));
 
@@ -135,7 +146,11 @@ public class MarketScene extends Scene {
                     && !specialItem.isEquipped()) {
                 player.getShip().addUpgrade(specialItem);
                 specialItem.setEquipped(true);
-                player.changeSkillLevel(specialItem.getSkillType(), specialItem.getIncAmount());
+                if (specialItem.isStatUpgrade()) {
+                    player.getShip().increaseMaxHP();
+                } else {
+                    player.changeSkillLevel(specialItem.getSkillType(), specialItem.getIncAmount());
+                }
                 player.credits -= itemFinalPrice;
 
                 sceneLoader.setScene(new MarketScene(regionMarket));
@@ -246,16 +261,25 @@ public class MarketScene extends Scene {
             CharacterUpgrade upgrade = ship.getUpgrade(i);
             upgradeOptions.add(label(upgrade.getName(), Color.WHITE, ITEM_NAME_SCALE));
             upgradeOptions.row();
-            upgradeOptions.add(label(
-                    "(Tech: " + upgrade.getTechLevel()
-                            + " | " + Skill.typeToStr(upgrade.getSkillType())
-                            + " +" + upgrade.getIncAmount() + ")",
-                    Color.WHITE, ITEM_DESC_SCALE));
+            if (upgrade.isStatUpgrade()) {
+                upgradeOptions.add(label("(MaxHP + 10)",
+                        Color.WHITE, ITEM_DESC_SCALE));
+            } else {
+                upgradeOptions.add(label(
+                                "(Tech: " + upgrade.getTechLevel()
+                                + " | " + Skill.typeToStr(upgrade.getSkillType())
+                                + " +" + upgrade.getIncAmount() + ")",
+                        Color.WHITE, ITEM_DESC_SCALE));
+            }
             upgradeOptions.row();
             Button upgradeSellBtn = textButton("Sell for " + upgrade.getSellingPrice(), Color.YELLOW, () -> {
                 player.credits += upgrade.getSellingPrice();
                 upgrade.setEquipped(false);
-                player.changeSkillLevel(upgrade.getSkillType(), -upgrade.getIncAmount());
+                if (upgrade.isStatUpgrade()) {
+                    player.getShip().decreaseMaxHP();
+                } else {
+                    player.changeSkillLevel(upgrade.getSkillType(), -upgrade.getIncAmount());
+                }
                 player.getShip().removeUpgrade(upgrade);
                 sceneLoader.setScene(new MarketScene(regionMarket));
             });
