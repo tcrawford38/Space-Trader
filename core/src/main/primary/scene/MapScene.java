@@ -61,6 +61,10 @@ public class MapScene extends Scene {
         shipTable.add(textButton("Training Ground", Color.RED, () -> {
             shipTable.remove();
             sceneLoader.setScene(new TrainingGroundScene());
+        })).padRight(200);;
+        shipTable.add(textButton("Save Game", Color.RED, () -> {
+            shipTable.remove();
+            sceneLoader.setScene(new SaveGameScene());
         }));
         shipTable.bottom().pad(30);
         sceneLoader.addActor(shipTable);

@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * Simple wrapper class for a skill level value
  */
-public class Skill {
+public class Skill implements java.io.Serializable {
 
     public enum SkillType {
         PILOT,

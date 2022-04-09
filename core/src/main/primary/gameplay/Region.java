@@ -4,7 +4,7 @@ import main.primary.Global;
 
 import java.util.Random;
 
-public class Region {
+public class Region implements java.io.Serializable {
 
     private final int regionID;
 

@@ -9,7 +9,7 @@ import java.util.Random;
 /**
  * This class contains the items for each region's marketplace
  */
-public class Market {
+public class Market implements java.io.Serializable {
 
     public static final int ITEMS_PER_MARKET = 6;
     public static final double TECH_LEVEL_DISCOUNT_FACTOR = 0.1;
