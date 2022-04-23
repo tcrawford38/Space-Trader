@@ -1,7 +1,5 @@
 package main.primary.scene;
 
-import java.io.File;
-
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,7 +11,7 @@ import main.primary.Global;
 import main.primary.gameplay.Player;
 import main.primary.gameplay.Save;
 
-public class SaveGameScene extends Scene {
+public class SaveNameScene extends Scene {
 
     Save save;
 
@@ -21,41 +19,31 @@ public class SaveGameScene extends Scene {
         table.defaults().pad(70f);
 
         // Title
-        table.add(title("Save Game", Color.YELLOW));
-        table.padBottom(100f);
+        table.add(title("Save Name (12 characters max)", Color.YELLOW));
+        table.padBottom(150f);
         table.row();
 
-        // Save name logic
-
-        String directoryName = "saves";
-        File directory = new File(directoryName);
-        if (!directory.exists()) {
-            directory.mkdir();
-        }
-
-        File[] saves = directory.listFiles();
-        System.out.println(saves.length);
-        
-        table.add(textButton(saves.length >= 1 ? saves[0].getName() : "Save Slot 1" , Color.GREEN, () -> {
-                Save.setSelectedSave(0);
-                sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
+        // Text input for save name
+        final VisTextField nameInput = nameInput();
+        table.add(nameInput).width(Global.WIDTH);
+        nameInput.focusField();
+        sceneLoader.requestFocus(nameInput);
         table.row();
 
-        table.add(textButton(saves.length >= 2 ? saves[1].getName() : "Save Slot 2", Color.GREEN, () -> {
-            Save.setSelectedSave(1);
-            sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
+        // Check name to make sure it is valid
+        table.add(textButton("Continue", Color.RED, () -> {
+            if (nameInput.getText() == null || nameInput.getText().trim().isEmpty()) {
+                nameInput.setText("");
+                nameInput.setMessageText("Enter a valid name");
+            } else {
+                Save.saveGame(nameInput.getText());
+                sceneLoader.setScene(new MapScene());   
+            }
+        })).pad(10);
         table.row();
-
-        table.add(textButton(saves.length == 3 ? saves[2].getName() : "Save Slot 3", Color.GREEN, () -> {
-            Save.setSelectedSave(2);
-            sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
-        table.row().colspan(2);
 
         // Go back to map scene
-        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new MapScene())));
+        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new ShipScene()))).pad(10);
     }
 
     // Helper method to create a correctly styled textField

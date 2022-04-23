@@ -11,17 +11,15 @@ import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTextField;
 import main.primary.Global;
 import main.primary.gameplay.Player;
-import main.primary.gameplay.Save;
+import main.primary.gameplay.Load;
 
-public class SaveGameScene extends Scene {
-
-    Save save;
+public class LoadGameScene extends Scene {
 
     public void create() {
         table.defaults().pad(70f);
 
         // Title
-        table.add(title("Save Game", Color.YELLOW));
+        table.add(title("Load Game", Color.YELLOW));
         table.padBottom(100f);
         table.row();
 
@@ -35,24 +33,15 @@ public class SaveGameScene extends Scene {
 
         File[] saves = directory.listFiles();
         System.out.println(saves.length);
-        
-        table.add(textButton(saves.length >= 1 ? saves[0].getName() : "Save Slot 1" , Color.GREEN, () -> {
-                Save.setSelectedSave(0);
-                sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
-        table.row();
 
-        table.add(textButton(saves.length >= 2 ? saves[1].getName() : "Save Slot 2", Color.GREEN, () -> {
-            Save.setSelectedSave(1);
-            sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
-        table.row();
-
-        table.add(textButton(saves.length == 3 ? saves[2].getName() : "Save Slot 3", Color.GREEN, () -> {
-            Save.setSelectedSave(2);
-            sceneLoader.setScene(new SaveNameScene());   
-        })).pad(60);
-        table.row().colspan(2);
+        for (int i = 0; i < saves.length; i++) {
+            String name = saves[i].getName();
+            table.add(textButton(name, Color.GREEN, () -> {
+                Load.loadGame(name);
+                sceneLoader.setScene(new MapScene());   
+            })).pad(60);
+            table.row();
+        }
 
         // Go back to map scene
         table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new MapScene())));

@@ -9,7 +9,7 @@ import main.primary.gameplay.Player;
 
 public class SaveData implements java.io.Serializable {
     private static final long serialVersionUID = 1L;
-    // Global variables
+    // Difficulty save
     public Difficulty difficulty;
     public Player player;
     public Random rand;
@@ -18,5 +18,4 @@ public class SaveData implements java.io.Serializable {
     public String[] classNames;
     public String[] characterUpgradeDescriptions;
     public String[] itemDescriptions;
-
 }

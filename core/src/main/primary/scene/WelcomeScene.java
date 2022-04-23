@@ -18,7 +18,7 @@ public class WelcomeScene extends Scene {
         // Button to transition to DifficultyScene
         table.add(textButton("New Game", Color.RED, () -> sceneLoader.setScene(new DifficultyScene())));
         // Button to transition to Load Game
-        table.add(textButton("Load Game", Color.RED, () -> sceneLoader.setScene(new DifficultyScene())));
+        table.add(textButton("Load Game", Color.RED, () -> sceneLoader.setScene(new LoadGameScene())));
 
         // TODO weclome scene animation
     }
