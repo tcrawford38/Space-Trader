@@ -33,7 +33,7 @@ public class Global {
 
     public static final int WIDTH = 1280;
     public static final int HEIGHT = 960;
-    public static final float MUSIC_VOLUME = 0;
+    public static final float MUSIC_VOLUME = 0.1f;
     public final AssetManager assetManager;
     public final GlyphLayout fontGlyphLayout;
 

@@ -30,7 +30,7 @@ public class SaveGameScene extends Scene {
         String directoryName = System.getProperty("user.home") + File.separator + "Space-trader-saves" + File.separator + "saves";
         File directory = new File(directoryName);
         if (!directory.exists()) {
-            directory.mkdir();
+            directory.mkdirs();
         }
 
         File[] saves = directory.listFiles();
