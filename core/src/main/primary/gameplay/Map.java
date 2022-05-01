@@ -1,6 +1,6 @@
 package main.primary.gameplay;
 
-public class Map {
+public class Map implements java.io.Serializable {
 
     private static final int MIN_SPACING = 150; // Min space between regions
     private static final int NUM_REGIONS = 10;

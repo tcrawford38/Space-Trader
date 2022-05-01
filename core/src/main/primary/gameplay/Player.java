@@ -4,7 +4,7 @@ import java.util.EnumMap;
 
 import main.primary.gameplay.Skill.SkillType;
 
-public class Player {
+public class Player implements java.io.Serializable {
 
     private final String name;
     public int credits; // Credits is used enough to the point where making it public is fine

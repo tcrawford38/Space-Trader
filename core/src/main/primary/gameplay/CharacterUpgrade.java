@@ -10,7 +10,7 @@ import java.util.Random;
  * <p>
  * This class holds two extra variables than Item: skillID and incAmount
  */
-public class CharacterUpgrade {
+public class CharacterUpgrade implements java.io.Serializable{
 
     public static final double DEPRECIATION = 0.5;
    

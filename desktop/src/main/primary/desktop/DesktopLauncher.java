@@ -1,5 +1,6 @@
 package main.primary.desktop;
 
+import com.badlogic.gdx.Files.FileType;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import main.primary.Global;
@@ -13,6 +14,8 @@ public class DesktopLauncher {
         config.width = Global.WIDTH;
         config.height = Global.HEIGHT;
         config.forceExit = true;
+        config.addIcon("images/SpaceTrader32.png", FileType.Internal);
+        config.addIcon("images/SpaceTrader128.png", FileType.Internal);
         new LwjglApplication(new Main(), config);
     }
 }

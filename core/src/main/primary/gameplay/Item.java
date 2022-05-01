@@ -7,7 +7,7 @@ import java.util.Random;
 /**
  * This class creates a Item Object
  */
-public class Item {
+public class Item implements java.io.Serializable {
 
     private String name;
     private String description;

@@ -4,7 +4,9 @@ Java game based on the old game Space Trader. For more information about the ori
 
 ## How to run the project
 
-Libgdx has a [guide](https://libgdx.com/dev/import-and-running/) which explains how to import gradle projects into your 
+1. Download exe from updated releases on github page.
+
+2. Libgdx has a [guide](https://libgdx.com/dev/import-and-running/) which explains how to import gradle projects into your 
 IDE (Eclipse, Intellij, etc) or run the game through the command line. Note that you need to download 
 [gradle](https://gradle.org/install) to run the project through the command line. The project currently only supports
 desktop.
