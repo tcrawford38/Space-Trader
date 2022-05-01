@@ -43,7 +43,7 @@ public class SaveNameScene extends Scene {
         table.row();
 
         // Go back to map scene
-        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new ShipScene()))).pad(10);
+        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new SaveGameScene()))).pad(10);
     }
 
     // Helper method to create a correctly styled textField

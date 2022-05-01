@@ -25,7 +25,7 @@ public class LoadGameScene extends Scene {
 
         // Save name logic
 
-        String directoryName = "saves";
+        String directoryName = System.getProperty("user.home") + File.separator + "Space-trader-saves" + File.separator + "saves";
         File directory = new File(directoryName);
         if (!directory.exists()) {
             directory.mkdir();
@@ -44,7 +44,7 @@ public class LoadGameScene extends Scene {
         }
 
         // Go back to map scene
-        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new MapScene())));
+        table.add(textButton("Back", Color.RED, () -> sceneLoader.setScene(new WelcomeScene())));
     }
 
     // Helper method to create a correctly styled textField

@@ -27,14 +27,13 @@ public class SaveGameScene extends Scene {
 
         // Save name logic
 
-        String directoryName = "saves";
+        String directoryName = System.getProperty("user.home") + File.separator + "Space-trader-saves" + File.separator + "saves";
         File directory = new File(directoryName);
         if (!directory.exists()) {
             directory.mkdir();
         }
 
         File[] saves = directory.listFiles();
-        System.out.println(saves.length);
         
         table.add(textButton(saves.length >= 1 ? saves[0].getName() : "Save Slot 1" , Color.GREEN, () -> {
                 Save.setSelectedSave(0);

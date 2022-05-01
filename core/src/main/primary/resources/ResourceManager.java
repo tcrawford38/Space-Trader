@@ -11,10 +11,10 @@ import main.primary.gameplay.Save;
 
 public class ResourceManager {
     public static void save(Serializable data, String fileName) throws Exception {
-        String directoryName = "saves";
+        String directoryName = System.getProperty("user.home") + File.separator + "Space-trader-saves" + File.separator + "saves";
         File directory = new File(directoryName);
         if (!directory.exists()) {
-            directory.mkdir();
+            directory.mkdirs();
         }
         File[] saves = directory.listFiles();
         if (Save.getSelectedSave() >= saves.length) {
@@ -33,10 +33,10 @@ public class ResourceManager {
     }
 
     public static Object load(String fileName) throws Exception {
-        String directoryName = "saves";
+        String directoryName = System.getProperty("user.home") + File.separator + "Space-trader-saves" + File.separator + "saves";
         File directory = new File(directoryName);
         if (!directory.exists()) {
-            directory.mkdir();
+            directory.mkdirs();
         }
         try (ObjectInputStream ois = new ObjectInputStream(Files.newInputStream(Paths.get(directory + "/" + fileName)))) {
             return ois.readObject();
